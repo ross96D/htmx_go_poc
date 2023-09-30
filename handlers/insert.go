@@ -23,6 +23,6 @@ func HandleInsert(e echo.Context) error {
 		Size:  size,
 	}
 
-	println(t.Name)
+	models.ToolInsert(e.Request().Context(), t)
 	return e.Render(200, "home.html", nil)
 }
