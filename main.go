@@ -3,7 +3,6 @@ package main
 import (
 	"html/template"
 	"io"
-	"log"
 	"mpg/htmx_go_poc/handlers"
 
 	"github.com/labstack/echo/v4"
@@ -19,21 +18,22 @@ func (t *TemplateRenderer) Render(w io.Writer, name string, data interface{}, c 
 }
 
 func main() {
-	tmpls, err := template.New("").ParseGlob("pages/*.html")
-
-	if err != nil {
-		log.Fatalf("couldn't initialize templates: %v", err)
-	}
+	tmpl := template.Must(template.ParseGlob("pages/*.html"))
+	template.Must(tmpl.ParseGlob("pages/*/*.html"))
 
 	e := echo.New()
 	e.Renderer = &TemplateRenderer{
-		templates: tmpls,
+		templates: tmpl,
 	}
 	e.Static("/", "assets")
 	loggerConf := middleware.LoggerConfig{
-		Format: "${time_rfc3339}\t${remote_ip}\t${method}\t${uri}\t${protocol}\t${status}\t${error}\t${latency}\t${bytes_in}\t${bytes_out}\n",
+		Format: "${time_rfc3339} ip:${remote_ip} method:${method} uri:${uri} ${protocol} scode:${status} e:${error} ms:${latency} in:${bytes_in} out:${bytes_out}\n",
 	}
 	e.Use(middleware.LoggerWithConfig(loggerConf))
+
 	e.GET("/", handlers.HandleIndex)
+	e.GET("/insert_view", handlers.HandleInsertView)
+	e.POST("/insert", handlers.HandleInsert)
+
 	e.Start("localhost:8765")
 }

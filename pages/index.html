@@ -8,21 +8,15 @@
 </head>
 <body>
     <div class="flex flex-col h-screen">
-        {{template "header"}}
-        <p>Ejemplo de unos gatos</p>
-        <main class="mb-auto">
-            <table class="table">
-                {{range .}}
-                <tr>
-                    <td>Nombre: {{.Name}}</td>
-                    <td>Sexo: {{.Sex}}</td>
-                    <td>Edad: {{.Age}}</td>
-                </tr>
-                {{end}}
-            </table>
-            <button class="btn btn-primary">Button</button>
+        <header id="header">
+            {{template "header"}}
+        </header>
+        <main id="main" class="mb-auto">
+            {{template "home"}}
         </main>
-        {{template "footer"}}
+        <footer id="footer" class="footer p-10 bg-base-200 text-base-content">
+            {{template "footer"}}
+        </footer>
     </div>
 </body>
 </html>

@@ -1,6 +1,5 @@
 {{define "header"}}
-<header>
-    <div class="flex columns-2 justify-between">
+    <div class="flex columns-3">
         <div class="flex grow">
             <div class="flex flex-auto">
                 <div class="flex max-sm:w-11/12 sm:w-7/12">
@@ -10,6 +9,18 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </button>
+                </div>
+            </div>
+        </div>
+        <div 
+            class="flex flex-shrink"
+            hx-get="/insert_view"
+            hx-trigger="click"
+            hx-target="#main"
+        >
+            <div class="avatar placeholder sm:h-12 sm:w-12 max-sm:h-8 max-sm:w-8">
+                <div class="cursor-pointer bg-neutral border-base-200 hover:bg-base-300 hover:text-base-content rounded-full border-2">
+                    <button>+</button>
                 </div>
             </div>
         </div>
@@ -23,5 +34,6 @@
             </div>
         </div>
     </div>
+    <br>
 </header>
 {{end}}
