@@ -40,6 +40,7 @@ func main() {
 	e.GET("/insert_view", handlers.HandleInsertView)
 	e.POST("/insert", handlers.HandleInsert)
 	e.DELETE("/delete", handlers.HandleDelete)
+	e.GET("/delete", handlers.HandleDelete)
 
 	e.Start("localhost:8765")
 }

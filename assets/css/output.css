@@ -1658,6 +1658,11 @@ html {
   border-top-right-radius: inherit;
 }
 
+.radio-md {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
 .avatar.online:before {
   content: "";
   position: absolute;
@@ -1794,8 +1799,20 @@ html {
   height: 1.25rem;
 }
 
+.h-full {
+  height: 100%;
+}
+
 .h-screen {
   height: 100vh;
+}
+
+.w-3 {
+  width: 0.75rem;
+}
+
+.w-3\/12 {
+  width: 25%;
 }
 
 .w-5 {
@@ -1808,14 +1825,6 @@ html {
 
 .w-full {
   width: 100%;
-}
-
-.w-6\/12 {
-  width: 50%;
-}
-
-.w-3\/12 {
-  width: 25%;
 }
 
 .flex-1 {
@@ -1853,18 +1862,6 @@ html {
 
 .justify-center {
   justify-content: center;
-}
-
-.place-self-center {
-  place-self: center;
-}
-
-.self-end {
-  align-self: flex-end;
-}
-
-.self-center {
-  align-self: center;
 }
 
 .overflow-x-auto {
@@ -1933,6 +1930,11 @@ html {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-zinc-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(113 113 122 / var(--tw-bg-opacity));
 }
 
 .fill-current {

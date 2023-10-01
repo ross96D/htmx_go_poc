@@ -28,17 +28,17 @@
             <tbody>
                 {{range .Tools}}
                 <tr id="row{{.ID}}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="w-2 text-center">
-                        <button 
-                            class="h-full w-full
-                            bg-cyan-600"
-                            hx-delete="/delete?id={{.ID}}"
-                            hx-target="#row{{.ID}}"
-                            hx-swap="delete"
-                        >
-                            -
-                        </button>
-                    </th>
+                    <form action="/delete" method="GET"
+                        hx-delete="/delete?id={{.ID}}"
+                        hx-target="#row{{.ID}}"
+                        hx-swap="delete"
+                        hx-boost="true"
+                    >
+                        <th scope="row" class="w-3 text-center">
+                            <input type="hidden" name ="id" value="{{.ID}}">
+                            <button type="submit" class="w-full h-5 bg-zinc-500 radio-md">-</button>
+                        </th>
+                    </form>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{.Name}}
                     </th>

@@ -43,17 +43,21 @@ func HandleInsert(e echo.Context) error {
 
 	err := models.ToolInsert(e.Request().Context(), t)
 	if err != nil {
-		return err
+		return fmt.Errorf("on HandleInsert, ToolInsert %w", err)
 	}
 	tools, err := models.ToolSelectAll(e.Request().Context())
 	if err != nil {
-		return err
+		return fmt.Errorf("on HandleInsert, ToolSelectAll %w", err)
 	}
-	e.Response().Header().Set("HX-Push", "/")
-	return e.Render(200, "home.html", map[string]interface{}{
-		"Tools":     tools,
-		"HXRequest": true,
-	})
+	if e.Request().Header.Get("Hx-Request") != "" {
+		e.Response().Header().Set("HX-Push", "/")
+		return e.Render(200, "home.html", map[string]interface{}{
+			"Tools":     tools,
+			"HXRequest": true,
+		})
+	} else {
+		return e.Redirect(301, "/")
+	}
 }
 
 func HandleDelete(e echo.Context) error {
@@ -69,5 +73,9 @@ func HandleDelete(e echo.Context) error {
 	if err != nil {
 		return fmt.Errorf("on HandleDelete, ToolDelete: %w", err)
 	}
-	return e.HTML(200, "")
+	if e.Request().Header.Get("Hx-Request") != "" {
+		return e.HTML(200, "")
+	} else {
+		return e.Redirect(301, "/")
+	}
 }
