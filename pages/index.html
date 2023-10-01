@@ -12,7 +12,13 @@
             {{template "header" .}}
         </header>
         <main id="main" class="mb-auto">
-            {{template "home" .}}
+            {{if eq .body "home"}}
+                {{template "home" .}}
+            {{else if eq .body "insert_view"}}
+                {{template "insert_view"}}
+            <!-- Aqui deberia invocarse una pagina de error -->
+            {{else}} <p>ERROR</p>
+            {{end}}
         </main>
         <footer id="footer" class="footer p-10 bg-base-200 text-base-content">
             {{template "footer" .}}

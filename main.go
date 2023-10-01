@@ -4,6 +4,8 @@ import (
 	"html/template"
 	"io"
 	"mpg/htmx_go_poc/handlers"
+	"mpg/htmx_go_poc/middlewares"
+	"mpg/htmx_go_poc/webserver/db"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -18,6 +20,7 @@ func (t *TemplateRenderer) Render(w io.Writer, name string, data interface{}, c 
 }
 
 func main() {
+	db.Connect()
 	tmpl := template.Must(template.ParseGlob("pages/*.html"))
 	template.Must(tmpl.ParseGlob("pages/*/*.html"))
 
@@ -26,10 +29,12 @@ func main() {
 		templates: tmpl,
 	}
 	e.Static("/", "assets")
-	loggerConf := middleware.LoggerConfig{
-		Format: "${time_rfc3339} ip:${remote_ip} method:${method} uri:${uri} ${protocol} scode:${status} e:${error} ms:${latency} in:${bytes_in} out:${bytes_out}\n",
-	}
-	e.Use(middleware.LoggerWithConfig(loggerConf))
+
+	e.Use(middlewares.VaryCache)
+	e.Use(middlewares.Logger())
+	e.Use(middleware.GzipWithConfig(middleware.GzipConfig{
+		Level: 5,
+	}))
 
 	e.GET("/", handlers.HandleIndex)
 	e.GET("/insert_view", handlers.HandleInsertView)

@@ -1,8 +1,8 @@
 {{define "home"}}
 <div class="text-center">
-    <h1 class="text-4xl">Home page</h1>
-    <div class="relative overflow-x-auto">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <h1 class="text-4xl py-2 pb-7">Home page</h1>
+    <div class="relative overflow-x-auto flex justify-center">
+        <table class="w-9/12 text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">Name</th>
@@ -18,13 +18,17 @@
                         {{.Name}}
                     </th>
                     <td class="px-6 py-4">
-                        {{.Date}}
+                        {{if .Date.Valid}}
+                            {{.Date.Time}}
+                        {{end}}
                     </td>
                     <td class="px-6 py-4">
                         {{.Color}}
                     </td>
                     <td class="px-6 py-4">
-                        {{.Size}}
+                        {{if .Size.Valid}}
+                            {{.Size.Int32}}
+                        {{end}}
                     </td>
                 </tr>
                 {{end}}
