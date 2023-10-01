@@ -2,13 +2,15 @@
     <div class="flex columns-3">
         <div class="flex grow">
             <div class="flex flex-auto">
-                <div class="flex max-sm:w-11/12 sm:w-7/12">
-                    <input class="w-full input max-sm:input-sm input-bordered bg-neutral join-item grow" placeholder="Search"/>                
+                <div id="search_bar" class="flex max-sm:w-11/12 sm:w-7/12">
+                    {{if .SearchBar}}
+                    <input class="w-full input max-sm:input-sm input-bordered bg-neutral join-item grow" placeholder="Search"/>
                     <button class="btn max-sm:btn-sm btn-outline btn-square bg-neutral border-base-200 hover:bg-base-300 hover:text-base-content">
                         <svg class="sm:h-6 sm:w-6 max-sm:h-4 max-sm:w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </button>
+                    {{end}}
                 </div>
             </div>
         </div>

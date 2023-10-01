@@ -2,6 +2,8 @@ package handlers
 
 import (
 	"database/sql"
+	"errors"
+	"fmt"
 	"mpg/htmx_go_poc/webserver/models"
 	"strconv"
 	"time"
@@ -11,10 +13,13 @@ import (
 
 func HandleInsertView(e echo.Context) error {
 	if e.Request().Header.Get("HX-Request") == "true" {
-		return e.Render(200, "insert_view.html", nil)
+		return e.Render(200, "insert_view.html", map[string]interface{}{
+			"HXRequest": true,
+		})
 	} else {
 		return e.Render(200, "index.html", map[string]interface{}{
-			"body": "insert_view",
+			"body":      "insert_view",
+			"HXRequest": false,
 		})
 	}
 }
@@ -46,6 +51,23 @@ func HandleInsert(e echo.Context) error {
 	}
 	e.Response().Header().Set("HX-Push", "/")
 	return e.Render(200, "home.html", map[string]interface{}{
-		"Tools": tools,
+		"Tools":     tools,
+		"HXRequest": true,
 	})
+}
+
+func HandleDelete(e echo.Context) error {
+	id := e.QueryParam("id")
+	if id == "" {
+		return errors.New("no id")
+	}
+	intID, err := strconv.Atoi(id)
+	if err != nil {
+		return fmt.Errorf("on HandleDelete, Atoi: %w", err)
+	}
+	err = models.ToolDelete(e.Request().Context(), intID)
+	if err != nil {
+		return fmt.Errorf("on HandleDelete, ToolDelete: %w", err)
+	}
+	return e.HTML(200, "")
 }

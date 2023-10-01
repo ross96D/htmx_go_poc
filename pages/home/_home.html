@@ -1,10 +1,24 @@
 {{define "home"}}
+{{if .HXRequest}}
+<div id="search_bar"  hx-swap-oob="true" class="flex max-sm:w-11/12 sm:w-7/12">
+    <input class="w-full input max-sm:input-sm input-bordered bg-neutral join-item grow" placeholder="Search"/>
+    <button class="btn max-sm:btn-sm btn-outline btn-square bg-neutral border-base-200 hover:bg-base-300 hover:text-base-content">
+        <svg class="sm:h-6 sm:w-6 max-sm:h-4 max-sm:w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+        </svg>
+    </button>
+</div>
+{{end}}
+<script>
+    
+</script>
 <div class="text-center">
     <h1 class="text-4xl py-2 pb-7">Home page</h1>
     <div class="relative overflow-x-auto flex justify-center">
         <table class="w-9/12 text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
+                    <th scope="col"></th>
                     <th scope="col" class="px-6 py-3">Name</th>
                     <th scope="col" class="px-6 py-3">Date</th>
                     <th scope="col" class="px-6 py-3">Color</th>
@@ -13,7 +27,18 @@
             </thead>
             <tbody>
                 {{range .Tools}}
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <tr id="row{{.ID}}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="w-2 text-center">
+                        <button 
+                            class="h-full w-full
+                            bg-cyan-600"
+                            hx-delete="/delete?id={{.ID}}"
+                            hx-target="#row{{.ID}}"
+                            hx-swap="delete"
+                        >
+                            -
+                        </button>
+                    </th>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{.Name}}
                     </th>

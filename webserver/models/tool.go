@@ -64,3 +64,13 @@ func ToolSelectAll(ctx context.Context) ([]Tool, error) {
 	}
 	return result, nil
 }
+
+func ToolDelete(ctx context.Context, id int) error {
+	_, err := db.DB().ExecContext(ctx,
+		`DELETE FROM tool WHERE id=$1`, id,
+	)
+	if err != nil {
+		return err
+	}
+	return nil
+}
