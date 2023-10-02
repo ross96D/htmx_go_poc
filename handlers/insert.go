@@ -17,8 +17,7 @@ func HandleInsertView(e echo.Context) error {
 			"HXRequest": true,
 		})
 	} else {
-		return e.Render(200, "index.html", map[string]interface{}{
-			"body":      "insert_view",
+		return e.Render(200, "insert_view_full.html", map[string]interface{}{
 			"HXRequest": false,
 		})
 	}
