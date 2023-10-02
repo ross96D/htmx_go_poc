@@ -1795,12 +1795,12 @@ html {
   display: table;
 }
 
-.h-5 {
-  height: 1.25rem;
+.hidden {
+  display: none;
 }
 
-.h-full {
-  height: 100%;
+.h-5 {
+  height: 1.25rem;
 }
 
 .h-screen {
