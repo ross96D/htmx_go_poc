@@ -12,6 +12,7 @@ func HandleIndex(e echo.Context) error {
 		return err
 	}
 	return e.Render(200, "index.html", map[string]interface{}{
+		"Tmp":       "t1.html",
 		"Tools":     tools,
 		"SearchBar": true,
 		"HXRequest": false,

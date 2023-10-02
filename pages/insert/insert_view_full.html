@@ -1,7 +1,9 @@
-{{template "header.html" .}}
+{{define "content"}}
 <main id="main" class="mb-auto">
     {{template "insert_view.html" .}}
 </main>
+{{end}}
+{{template "header.html" .}}
 {{template "footer.html" .}}
 </div>
 </body>
