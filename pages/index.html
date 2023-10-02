@@ -1,8 +1,3 @@
-{{template "header.html" .}}
-<main id="main" class="mb-auto">
-{{template "home.html" .}}
-</main>
-{{template "footer.html" .}}
-</div>
-</body>
-</html>
+{{define "content"}}
+<main id="main" class="mb-auto">{{template "home.html" .}}</main>
+{{end}} {{template "layout.html" .}}

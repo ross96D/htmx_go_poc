@@ -1,104 +1,99 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=800px, initial-scale=1.5" />
-		<title>Hello World</title>
-		<link href="/css/output.css" rel="stylesheet" />
-		<script src="/js/htmx.min.js"></script>
-		<script src="/js/microqueues.pollyfill.js"></script>
-		<script src="/js/alpinejs.js"></script>
-	</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800px, initial-scale=1.5" />
+        <title>Hello World</title>
+        <link href="/css/output.css" rel="stylesheet" />
+        <script src="/js/htmx.min.js"></script>
+        <script src="/js/microqueues.pollyfill.js"></script>
+        <script src="/js/alpinejs.js"></script>
+    </head>
 
-	<body>
-		<div class="flex flex-col h-screen" hx-boost="true">
-			<header id="header">
-				<div class="flex columns-3">
-					<div class="flex grow">
-						<div class="flex flex-auto">
-							<div
-								id="search_bar"
-								class="flex max-sm:w-11/12 sm:w-7/12"
-							>
-								{{if .SearchBar}}
-								<input
-									class="w-full input max-sm:input-sm input-bordered bg-neutral join-item grow"
-									placeholder="Search"
-								/>
-								<button
-									class="btn max-sm:btn-sm btn-outline btn-square bg-neutral border-base-200 hover:bg-base-300 hover:text-base-content"
-								>
-									<svg
-										class="sm:h-6 sm:w-6 max-sm:h-4 max-sm:w-4"
-										aria-hidden="true"
-										xmlns="http://www.w3.org/2000/svg"
-										fill="none"
-										viewBox="0 0 20 20"
-									>
-										<path
-											stroke="currentColor"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											stroke-width="2"
-											d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-										/>
-									</svg>
-								</button>
-								{{end}</div>
-                            </body>
-                            </html>
-                            }
-							</div>
-						</div>
-					</div>
-					<div class="flex flex-shrink">
-						<a
-							href="/insert_view"
-							hx-trigger="click"
-							hx-target="#main"
-							hx-push-url="true"
-						>
-							<div
-								class="avatar placeholder sm:h-12 sm:w-12 max-sm:h-8 max-sm:w-8"
-							>
-								<div
-									class="cursor-pointer bg-neutral border-base-200 hover:bg-base-300 hover:text-base-content rounded-full border-2"
-								>
-									<button>+</button>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="flex order-last">
-						<div
-							class="avatar placeholder sm:h-12 sm:w-12 max-sm:h-8 max-sm:w-8"
-						>
-							<div
-								class="cursor-pointer bg-neutral border-base-200 hover:bg-base-300 hover:text-base-content rounded-full border-2"
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									fill="none"
-									viewBox="0 0 24 24"
-									stroke-width="2"
-									stroke="currentColor"
-									class="sm:h-6 sm:w-6 max-sm:h-4 max-sm:w-4"
-								>
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-									/>
-								</svg>
-							</div>
-						</div>
-					</div>
-				</div>
-				<br />
-			</header>
-{{template "content" .}}
-{{template "footer.html"}}
-</div>
-</body>
-
+    <body>
+        <div class="flex flex-col h-screen" hx-boost="true">
+            <header id="header">
+                <div class="flex columns-3">
+                    <div class="flex grow">
+                        <div class="flex flex-auto">
+                            <div
+                                id="search_bar"
+                                class="flex max-sm:w-11/12 sm:w-7/12"
+                            >
+                                {{if .SearchBar}}
+                                <input
+                                    class="w-full input max-sm:input-sm input-bordered bg-neutral join-item grow"
+                                    placeholder="Search"
+                                />
+                                <button
+                                    class="btn max-sm:btn-sm btn-outline btn-square bg-neutral border-base-200 hover:bg-base-300 hover:text-base-content"
+                                >
+                                    <svg
+                                        class="sm:h-6 sm:w-6 max-sm:h-4 max-sm:w-4"
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            stroke="currentColor"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                                        />
+                                    </svg>
+                                </button>
+                                {{end}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-shrink">
+                        <a
+                            href="/insert_view"
+                            hx-trigger="click"
+                            hx-target="#main"
+                            hx-push-url="true"
+                        >
+                            <div
+                                class="avatar placeholder sm:h-12 sm:w-12 max-sm:h-8 max-sm:w-8"
+                            >
+                                <div
+                                    class="cursor-pointer bg-neutral border-base-200 hover:bg-base-300 hover:text-base-content rounded-full border-2"
+                                >
+                                    <button>+</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="flex order-last">
+                        <div
+                            class="avatar placeholder sm:h-12 sm:w-12 max-sm:h-8 max-sm:w-8"
+                        >
+                            <div
+                                class="cursor-pointer bg-neutral border-base-200 hover:bg-base-300 hover:text-base-content rounded-full border-2"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="2"
+                                    stroke="currentColor"
+                                    class="sm:h-6 sm:w-6 max-sm:h-4 max-sm:w-4"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </header>
+            {{template "content" .}} {{template "footer.html"}}
+        </div>
+    </body>
 </html>
