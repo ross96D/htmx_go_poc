@@ -53,9 +53,6 @@ func ToolSelectAll(ctx context.Context) ([]Tool, error) {
 	for rows.Next() {
 		var t Tool
 		rows.StructScan(&t)
-		// t.Date = time.Unix(0, t.DateInt*int64(time.Millisecond))
-		println(t.DateInt.Int64)
-		println(t.DateInt.Valid)
 		t.Date = sql.NullTime{
 			Time:  time.Unix(0, t.DateInt.Int64*int64(time.Millisecond)),
 			Valid: t.DateInt.Valid,
