@@ -4,3 +4,4 @@
 **/.hg
 **/node_modules
 **/assets
+**/header.html
