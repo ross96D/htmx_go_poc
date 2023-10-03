@@ -1,11 +1,12 @@
 package main
 
 import (
-	"html/template"
 	"io"
 	"mpg/htmx_go_poc/handlers"
 	"mpg/htmx_go_poc/middlewares"
 	"mpg/htmx_go_poc/webserver/db"
+
+	"github.com/philippta/go-template/html/template"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
