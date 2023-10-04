@@ -3,9 +3,10 @@ package models
 import (
 	"context"
 	"database/sql"
-	"fmt"
 	"mpg/htmx_go_poc/webserver/db"
 	"time"
+
+	"github.com/pkg/errors"
 )
 
 type Tool struct {
@@ -26,7 +27,7 @@ func ToolInsert(ctx context.Context, t Tool) error {
 		Ctx: ctx,
 	})
 	if err != nil {
-		return fmt.Errorf("on InserTool, BeginTx: %w", err)
+		return errors.WithStack(err)
 	}
 
 	_, err = tx.ExecContext(
@@ -34,20 +35,20 @@ func ToolInsert(ctx context.Context, t Tool) error {
 		t.Name, t.Color, t.Size, t.DateInt,
 	)
 	if err != nil {
-		return fmt.Errorf("on InserTool, ExecContext: %w", err)
+		return errors.WithStack(err)
 	}
 
 	err = tx.Commit()
 	if err != nil {
-		return fmt.Errorf("on InserTool, Commit: %w", err)
+		return errors.WithStack(err)
 	}
 	return nil
 }
 
 func ToolSelectAll(ctx context.Context) ([]Tool, error) {
-	rows, err := db.DB().QueryxContext(ctx, `SELECT * FROM tool`, nil)
+	rows, err := db.DB().QueryxContext(ctx, `SELECTD * FROM tool`, nil)
 	if err != nil {
-		return nil, fmt.Errorf("on ToolSelectAll, Query: %w", err)
+		return nil, errors.WithStack(err)
 	}
 	result := make([]Tool, 0)
 	for rows.Next() {
@@ -67,7 +68,7 @@ func ToolDelete(ctx context.Context, id int) error {
 		`DELETE FROM tool WHERE id=$1`, id,
 	)
 	if err != nil {
-		return err
+		return errors.WithStack(err)
 	}
 	return nil
 }

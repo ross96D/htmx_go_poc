@@ -2,13 +2,13 @@ package handlers
 
 import (
 	"database/sql"
-	"errors"
 	"fmt"
 	"mpg/htmx_go_poc/webserver/models"
 	"strconv"
 	"time"
 
 	"github.com/labstack/echo/v4"
+	"github.com/pkg/errors"
 )
 
 func HandleInsertView(e echo.Context) error {
@@ -42,11 +42,11 @@ func HandleInsert(e echo.Context) error {
 
 	err := models.ToolInsert(e.Request().Context(), t)
 	if err != nil {
-		return fmt.Errorf("on HandleInsert, ToolInsert %w", err)
+		return errors.WithStack(err)
 	}
 	tools, err := models.ToolSelectAll(e.Request().Context())
 	if err != nil {
-		return fmt.Errorf("on HandleInsert, ToolSelectAll %w", err)
+		return errors.WithStack(err)
 	}
 	if e.Request().Header.Get("Hx-Request") != "" {
 		e.Response().Header().Set("HX-Push", "/")

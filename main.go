@@ -36,6 +36,7 @@ func main() {
 	e.Use(middleware.GzipWithConfig(middleware.GzipConfig{
 		Level: 5,
 	}))
+	e.Use(middlewares.Stacktrace())
 
 	e.GET("/", handlers.HandleIndex)
 	e.GET("/insert_view", handlers.HandleInsertView)
