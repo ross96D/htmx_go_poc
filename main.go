@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"mpg/htmx_go_poc/handlers"
 	"mpg/htmx_go_poc/middlewares"
@@ -44,5 +45,7 @@ func main() {
 	e.DELETE("/delete", handlers.HandleDelete)
 	e.GET("/delete", handlers.HandleDelete)
 
-	e.Start("localhost:8765")
+	if err := e.StartTLS("localhost:8765", "webserver/cert/certificate.pem", "webserver/cert/privatekey.pem"); err != nil {
+		fmt.Printf("Error starting server %v", err)
+	}
 }
