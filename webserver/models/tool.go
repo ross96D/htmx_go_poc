@@ -46,7 +46,7 @@ func ToolInsert(ctx context.Context, t Tool) error {
 }
 
 func ToolSelectAll(ctx context.Context) ([]Tool, error) {
-	rows, err := db.DB().QueryxContext(ctx, `SELECTD * FROM tool`, nil)
+	rows, err := db.DB().QueryxContext(ctx, `SELECT * FROM tool`, nil)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
